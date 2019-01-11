@@ -12,7 +12,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// инициализация базы данных
+// инициализация
 var db *sql.DB
 
 // структура
@@ -24,7 +24,7 @@ type Args struct {
 // структура
 type RPCServer struct{}
 
-// структура
+// Функция добавления записи
 func (t *RPCServer) Add(args *Args, res *string) error {
 
 	var returnid string
@@ -39,6 +39,7 @@ func (t *RPCServer) Add(args *Args, res *string) error {
 	return nil
 }
 
+// Функция обновления записи
 func (t *RPCServer) Update(args *Args, res *string) error {
 
 	fmt.Println("args: ", args.NAME, args.UID)
@@ -52,6 +53,7 @@ func (t *RPCServer) Update(args *Args, res *string) error {
 	return nil
 }
 
+// Функция вывода
 func (t *RPCServer) Show(args *Args, res *string) error {
 
 	result, err := db.Query("SELECT * FROM public.user")
@@ -81,6 +83,7 @@ func main() {
 
 	var err error
 
+	// инициализация базы данных
 	db, err = sql.Open("postgres", "user=postgres password= dbname=postgres sslmode=disable")
 
 	if err != nil {
