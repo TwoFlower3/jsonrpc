@@ -13,6 +13,7 @@ type Args struct {
 
 func main() {
 
+	// создание соединения
 	client, err := net.Dial("tcp", "127.0.0.1:8080")
 
 	if err != nil {
@@ -26,6 +27,7 @@ func main() {
 
 	var reply string
 
+	// запросы
 	err = conn.Call("RPCServer.Add", args, &reply)
 	checkError(err)
 	//fmt.Printf("Result: ", reply)
@@ -38,6 +40,7 @@ func main() {
 	//fmt.Printf("Result: ", reply)
 }
 
+// проверка ошибок
 func checkError(err error) {
 	if err != nil {
 		panic(err)
